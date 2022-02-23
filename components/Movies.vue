@@ -11,7 +11,10 @@
     </div>
     <div id="movie-grid" class="movie-grid">
       <Loading v-if="$fetchState.pending" />
-      <Movie v-for="movie in movies" v-else :key="movie.id" :movie="movie" />
+      <template v-if="movies.length">
+        <Movie v-for="movie in movies" :key="movie.id" :movie="movie" />
+      </template>
+      <p v-else>No Movies Found!</p>
     </div>
   </div>
 </template>
@@ -55,7 +58,6 @@ export default {
 <style lang="scss" scoped>
 .movie-grid {
   display: grid;
-  // grid-template-columns: 1fr 1fr 1fr;
   column-gap: 30px;
   row-gap: 30px;
   padding: 50px 0;
